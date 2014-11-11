@@ -3,11 +3,13 @@ package com.example.horth_000.invsys;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.example.horth_000.invsys.controller.UsuarioController;
 import com.example.horth_000.invsys.model.Usuario;
 
 import org.json.JSONObject;
@@ -21,6 +23,7 @@ public class Login extends Activity {
     private EditText inputEmail;
     private EditText inputPassword;
     private TextView loginErrorMsg;
+    private UsuarioController userCtl;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -32,25 +35,24 @@ public class Login extends Activity {
         btnLogin = (Button) findViewById(R.id.btnLogin);
         loginErrorMsg = (TextView) findViewById(R.id.login_error);
 
+        userCtl = new UsuarioController(this);
+
         btnLogin.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View view) {
                 String email = inputEmail.getText().toString();
                 String password = inputPassword.getText().toString();
 
-                Usuario usuario = new Usuario();
+                Usuario usuario = userCtl.checkLogin(email, password);
 
-                usuario.setOnLoginUsuario(new OnLoginUsuario() {
-                    @Override
-                    public void onLoginWrong(String msg) {loginErrorMsg.setText(msg);}
-                    @Override
-                    public void onLoginCorrect(JSONObject json, String msg) {
-                        loginErrorMsg.setText("");
-                        Intent itemintent = new Intent(Login.this, ActivityPrincipal.class);
-                        Login.this.startActivity(itemintent);
-                    }
-                });
-                usuario.login(Login.this, email, password);
+                if(usuario != null) {
+                    Intent intent = new Intent(Login.this, WelcomeActivity.class);
+                    intent.putExtra("Nombre", usuario.getName()+" "+usuario.getSurname());
+
+                    startActivity(intent);
+                } else {
+                    Log.d("LOGIN", "Error: usuario invalido");
+                }
             }
         });
 

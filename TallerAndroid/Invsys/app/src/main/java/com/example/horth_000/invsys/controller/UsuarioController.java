@@ -2,9 +2,11 @@ package com.example.horth_000.invsys.controller;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.example.horth_000.invsys.DbHelper;
+import com.example.horth_000.invsys.model.Usuario;
 
 import java.security.PublicKey;
 
@@ -52,6 +54,25 @@ public class UsuarioController {
     }
     public void updateUser(String name, String surname, String username, String pass){
         db.update(TABLE_NAME, gContentValues(name, surname, username,  pass), CN_USERNAME+ "=?", new String[]{username} );
+    }
+
+    public Usuario checkLogin(String username, String password) {
+        String[] columns = new String[]{CN_ID, CN_NAME, CN_SURNAME, CN_USERNAME, CN_PASS};
+        String[] args = new String[] {username, password};
+        Cursor results = db.query(TABLE_NAME, columns, CN_USERNAME + "=? AND " + CN_PASS + "=?", args, null, null, null);
+
+        if(results.getCount() < 1)
+            return null;
+
+        Usuario user = new Usuario();
+        results.moveToFirst();
+        user.setName(results.getString(results.getColumnIndex(CN_NAME)));
+        user.setUsername(results.getString(results.getColumnIndex(CN_USERNAME)));
+        user.setSurname(results.getString(results.getColumnIndex(CN_SURNAME)));
+        user.setPassword(results.getString(results.getColumnIndex(CN_PASS)));
+        user.setUID(results.getString(results.getColumnIndex(CN_ID)));
+
+        return user;
     }
 
 }

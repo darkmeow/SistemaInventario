@@ -1,6 +1,7 @@
 package com.example.horth_000.invsys;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -50,5 +51,7 @@ public class Registrar extends Activity {
         EditText username = (EditText) findViewById(R.id.txtusername);
         EditText pass = (EditText) findViewById(R.id.txtpass);
         manager.insertar(name.getText().toString(), surname.getText().toString(),username.getText().toString(),pass.getText().toString());
+        startActivity(new Intent(Registrar.this, Login.class));
+
     }
 }
