@@ -8,6 +8,5 @@
         android:layout_height="wrap_content"
         android:text="Hola usuario!"
         android:id="@+id/welcomeTextView"
-        android:layout_gravity="center_horizontal"
-        android:textSize="40dp" />
+        android:layout_gravity="center_horizontal" />
 </LinearLayout>
