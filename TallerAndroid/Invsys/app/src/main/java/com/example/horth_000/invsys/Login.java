@@ -30,6 +30,7 @@ public class Login extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+
         inputEmail = (EditText) findViewById(R.id.txtUsern);
         inputPassword = (EditText) findViewById(R.id.txtPass);
         btnLogin = (Button) findViewById(R.id.btnLogin);
@@ -44,12 +45,18 @@ public class Login extends Activity {
                 String password = inputPassword.getText().toString();
 
                 Usuario usuario = userCtl.checkLogin(email, password);
-
+                String admin = "admin";
+                String pssw = "admin";
                 if(usuario != null) {
-                    Intent intent = new Intent(Login.this, WelcomeActivity.class);
-                    intent.putExtra("Nombre", usuario.getName()+" "+usuario.getSurname());
-
-                    startActivity(intent);
+                    if((usuario.getPassword().equals(admin)) && (usuario.getPassword().equals(pssw))){
+                        Intent intent = new Intent(Login.this, AdminPanel.class);
+                        startActivity(intent);
+                    }
+                    else {
+                        Intent intent = new Intent(Login.this, WelcomeActivity.class);
+                        intent.putExtra("Nombre", usuario.getName() + " " + usuario.getSurname());
+                        startActivity(intent);
+                    }
                 } else {
                     Log.d("LOGIN", "Error: usuario invalido");
                 }

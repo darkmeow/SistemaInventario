@@ -16,6 +16,18 @@
             android:label="@string/app_name" >
         </activity>
         <activity
+            android:name=".AdminPanel"
+            android:label="@string/app_name" >
+        </activity>
+        <activity
+            android:name=".AddProd"
+            android:label="@string/app_name" >
+        </activity>
+        <activity
+            android:name=".AddCategoria"
+            android:label="@string/app_name" >
+        </activity>
+        <activity
             android:name=".Login"
             android:label="@string/app_name" >
             <intent-filter>
