@@ -9,13 +9,14 @@ import org.json.JSONObject;
 /**
  * Created by meow on 11-11-14.
  */
-public class Usuario {
+    public class Usuario {
 
     private String Name = "";
     private String Surname = "";
     private String ID = "";
     private String Username = "";
     private String Password = "";
+    private Integer isBodeguero = 0;
 
 
     private static String KEY_SUCCESS = "success";
@@ -24,6 +25,8 @@ public class Usuario {
     private static String KEY_EMAIL = "email";
     private static String KEY_CREATED_AT = "created_at";
     private static String KEY_USER = "user";
+
+    //private static String KEY_BOD = "isBod";
 
     private static String login_tag = "login";
     private static String register_tag = "register";
@@ -57,5 +60,13 @@ public class Usuario {
 
     public void setPassword(String password) {
         Password = password;
+    }
+
+    public Integer getIsBodeguero() {
+        return isBodeguero;
+    }
+
+    public void setIsBodeguero(Integer isBodeguero) {
+        this.isBodeguero = isBodeguero;
     }
 }

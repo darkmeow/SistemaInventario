@@ -2,6 +2,7 @@ package com.example.horth_000.invsys.controller;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.example.horth_000.invsys.DbHelper;
@@ -23,7 +24,7 @@ public class ProductoController {
 
 
     public static final String CREATE_TABLE = "create table " +TABLE_NAME+ " ("
-            + ID_PRODUCTO + " integer primary key, "
+            + ID_PRODUCTO + " integer primary key autoincrement, "
             + NOMBRE_PRODUCTO + " text not null, "
             + FECHA_INGRESO + " integer not null,"
             + STOCK + " integer not null,"
@@ -40,12 +41,11 @@ public class ProductoController {
         db =  helper.getWritableDatabase();
 
     }
-    private ContentValues gContentValues(String id_producto, String nombre_producto,
+    private ContentValues gContentValues(String nombre_producto,
                                          String fecha_ingreso, String stock,
                                          String nombre_categoria, String nombre_distribuidor,
                                          String descripcion, String imagen){
         ContentValues values = new ContentValues();
-        values.put(ID_PRODUCTO, id_producto);
         values.put(NOMBRE_PRODUCTO, nombre_producto );
         values.put(FECHA_INGRESO, fecha_ingreso);
         values.put(STOCK, stock);
@@ -55,17 +55,25 @@ public class ProductoController {
         values.put(IMAGEN, imagen);
         return values;
     }
-    public void insertar(String id_producto, String nombre_producto,
+
+    public void insertar(String nombre_producto,
                          String fecha_ingreso, String stock,
                          String nombre_categoria, String nombre_distribuidor,
                          String descripcion, String imagen)
+    {
+        String[] columns = new String[]{NOMBRE_PRODUCTO};
+        String[] args = new String[] {nombre_producto};
+        Cursor results = db.query(TABLE_NAME, columns, NOMBRE_PRODUCTO + "=?", args, null, null, null, null);
 
-    {///revisar esto
-        db.insert(TABLE_NAME, ID_PRODUCTO, gContentValues( id_producto,  nombre_producto,
-                                                            fecha_ingreso, stock,
-                                                            nombre_categoria, nombre_distribuidor,
-                                                            descripcion, imagen));
+        if(results.getCount() < 1)
+            db.insert(TABLE_NAME, NOMBRE_PRODUCTO, gContentValues(nombre_producto, fecha_ingreso, stock,
+                     nombre_categoria, nombre_distribuidor, descripcion, imagen));
+
     }
+
+
+
+
     ///revisar esto
     public void delete(String nombre_producto){
         db.delete(TABLE_NAME, NOMBRE_PRODUCTO+ "=?", new String[]{nombre_producto});
@@ -75,7 +83,7 @@ public class ProductoController {
                            String fecha_ingreso, String stock,
                            String nombre_categoria, String nombre_distribuidor,
                            String descripcion, String imagen){
-        db.update(TABLE_NAME, gContentValues(id_producto,  nombre_producto,
+        db.update(TABLE_NAME, gContentValues(nombre_producto,
                 fecha_ingreso, stock,
                 nombre_categoria, nombre_distribuidor,
                 descripcion, imagen), NOMBRE_PRODUCTO+ "=?", new String[]{nombre_producto} );

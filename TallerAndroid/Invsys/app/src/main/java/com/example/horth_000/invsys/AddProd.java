@@ -28,8 +28,9 @@ public class AddProd extends Activity {
          EditText categoria = (EditText) findViewById(R.id.edtxtCategoria);
          EditText fecha_de_ingreso = (EditText) findViewById(R.id.edtxtDate);
          EditText descripcion = (EditText) findViewById(R.id.edtxtDescrip);
+         EditText imagen = (EditText) findViewById(R.id.edtxtImagen);
 
-         //manager.insertar(producto.getText().toString(), fecha_de_ingreso.getText().toString(),stock.getText().toString(),categoria.getText().toString(), distribuidor.getText().toString(),descripcion.getText().toString());
+         manager.insertar(producto.getText().toString(), fecha_de_ingreso.getText().toString(),stock.getText().toString(),categoria.getText().toString(), distribuidor.getText().toString(),descripcion.getText().toString(), imagen.getText().toString());
          startActivity(new Intent(AddProd.this, AdminPanel.class));
 
     }

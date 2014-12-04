@@ -50,7 +50,7 @@ public class Registrar extends Activity {
         EditText surname = (EditText) findViewById(R.id.txtsurname);
         EditText username = (EditText) findViewById(R.id.txtusername);
         EditText pass = (EditText) findViewById(R.id.txtpass);
-        manager.insertar(name.getText().toString(), surname.getText().toString(),username.getText().toString(),pass.getText().toString());
+        manager.insertar(name.getText().toString(), surname.getText().toString(),username.getText().toString(),pass.getText().toString(),0);
         startActivity(new Intent(Registrar.this, Login.class));
 
     }

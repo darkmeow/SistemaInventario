@@ -4,7 +4,9 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import com.example.horth_000.invsys.controller.CategoriaController;
 import com.example.horth_000.invsys.controller.UsuarioController;
+import com.example.horth_000.invsys.model.Usuario;
 
 /**
  * Created by horth_000 on 10-11-2014.
@@ -22,7 +24,9 @@ public class DbHelper extends SQLiteOpenHelper{
     public void onCreate(SQLiteDatabase db) {
 
         db.execSQL(UsuarioController.CREATE_TABLE);
+        db.execSQL(CategoriaController.CREATE_TABLE);
         //otros controladores para crear sus tablas
+
     }
 
     @Override //actualizar

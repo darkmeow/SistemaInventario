@@ -7,19 +7,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Ingrese nombre de Categoria"
-        android:id="@+id/txtCategoria" />
-
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/edtxtCategoria" />
+        android:text="Productos"
+        android:id="@+id/txtProductos" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Agregar"
-        android:id="@+id/btnAddCategoria"
-        android:onClick="addCategoria"
+        android:text="Agregar Nuevo Producto"
+        android:id="@+id/btnAddProd"
         android:layout_gravity="center_horizontal" />
 </LinearLayout>

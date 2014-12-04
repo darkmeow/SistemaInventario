@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.example.horth_000.invsys.controller.CategoriaController;
 import com.example.horth_000.invsys.controller.UsuarioController;
 import com.example.horth_000.invsys.model.Usuario;
 
@@ -24,6 +25,7 @@ public class Login extends Activity {
     private EditText inputPassword;
     private TextView loginErrorMsg;
     private UsuarioController userCtl;
+    private CategoriaController userCat;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -37,6 +39,8 @@ public class Login extends Activity {
         loginErrorMsg = (TextView) findViewById(R.id.login_error);
 
         userCtl = new UsuarioController(this);
+        userCtl.insertar("Administrador","FULLACCESS", "admin","admin", 0); //agrega admin
+        userCat = new CategoriaController(this);
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
 

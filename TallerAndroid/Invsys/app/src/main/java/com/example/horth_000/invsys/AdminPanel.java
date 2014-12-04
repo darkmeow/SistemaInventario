@@ -12,21 +12,21 @@ import android.widget.Button;
 public class AdminPanel extends Activity {
 
     private Button btnAddProd;
-    private Button btnAddCategoria;
+    private Button btnCategorias;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_adminpanel);
         btnAddProd = (Button) findViewById(R.id.btnAddProd);
-        btnAddCategoria = (Button) findViewById(R.id.btnAddCategoria);
+        btnCategorias = (Button) findViewById(R.id.btnCategorias);
         btnAddProd.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 Intent intent = new Intent(AdminPanel.this, AddProd.class);
                 startActivity(intent);
             }
         });
-        btnAddCategoria.setOnClickListener(new View.OnClickListener() {
+        btnCategorias.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-                Intent intent = new Intent(AdminPanel.this, AddCategoria.class);
+                Intent intent = new Intent(AdminPanel.this, Categorias.class);
                 startActivity(intent);
 
             }
