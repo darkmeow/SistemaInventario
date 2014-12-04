@@ -42,31 +42,6 @@ public class Login extends Activity {
         userCtl.insertar("Administrador","FULLACCESS", "admin","admin", 0); //agrega admin
         userCat = new CategoriaController(this);
 
-        btnLogin.setOnClickListener(new View.OnClickListener() {
-
-            public void onClick(View view) {
-                String email = inputEmail.getText().toString();
-                String password = inputPassword.getText().toString();
-
-                Usuario usuario = userCtl.checkLogin(email, password);
-                String admin = "admin";
-                String pssw = "admin";
-                if(usuario != null) {
-                    if((usuario.getPassword().equals(admin)) && (usuario.getPassword().equals(pssw))){
-                        Intent intent = new Intent(Login.this, AdminPanel.class);
-                        startActivity(intent);
-                    }
-                    else {
-                        Intent intent = new Intent(Login.this, WelcomeActivity.class);
-                        intent.putExtra("Nombre", usuario.getName() + " " + usuario.getSurname());
-                        startActivity(intent);
-                    }
-                } else {
-                    Log.d("LOGIN", "Error: usuario invalido");
-                }
-            }
-        });
-
         lblGotoRegister = (TextView) findViewById(R.id.link_to_register);
         lblGotoRegister.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -76,4 +51,25 @@ public class Login extends Activity {
     }
 
 
+    public void login(View view) {
+        String email = inputEmail.getText().toString();
+        String password = inputPassword.getText().toString();
+
+        Usuario usuario = userCtl.checkLogin(email, password);
+        String admin = "admin";
+        String pssw = "admin";
+        if(usuario != null) {
+            if((usuario.getPassword().equals(admin)) && (usuario.getPassword().equals(pssw))){
+                Intent intent = new Intent(Login.this, AdminPanel.class);
+                startActivity(intent);
+            }
+            else {
+                Intent intent = new Intent(Login.this, WelcomeActivity.class);
+                intent.putExtra("Nombre", usuario.getName() + " " + usuario.getSurname());
+                startActivity(intent);
+            }
+        } else {
+            Log.d("LOGIN", "Error: usuario invalido");
+        }
+    }
 }

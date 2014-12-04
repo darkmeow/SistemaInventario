@@ -4,12 +4,6 @@
     android:layout_height="match_parent"
     android:weightSum="1">
 
-    <SearchView
-        android:layout_width="match_parent"
-        android:layout_height="38dp"
-        android:id="@+id/searchView"
-        android:layout_weight="0.07" />
-
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -23,6 +17,7 @@
         android:layout_height="wrap_content"
         android:text="Productos"
         android:id="@+id/btnProductos"
+        android:onClick="mostrarProductos"
         android:layout_gravity="center_horizontal"
         android:layout_weight="0.07" />
 

@@ -1,4 +1,4 @@
-package com.example.horth_000.invsys;
+package com.example.horth_000.invsys.database;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;

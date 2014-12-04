@@ -5,7 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
-import com.example.horth_000.invsys.DbHelper;
+import com.example.horth_000.invsys.database.DbHelper;
 
 /**
  * Created by meow on 11-11-14.

@@ -5,10 +5,8 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
-import com.example.horth_000.invsys.DbHelper;
+import com.example.horth_000.invsys.database.DbHelper;
 import com.example.horth_000.invsys.model.Usuario;
-
-import java.security.PublicKey;
 
 /**
  * Created by horth_000 on 10-11-2014.
